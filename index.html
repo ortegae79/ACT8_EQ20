@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tablero de Visualización: Pobreza en México</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // Cargar la API de Visualización y el paquete corechart
+      google.charts.load('current', {'packages':['corechart']});
+      
+      // Llamar a drawCharts cuando la API de Google esté lista
+      google.charts.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+        // 1. Gráfico de Líneas
+        var data1 = google.visualization.arrayToDataTable([
+          ['Año', 'Porcentaje de Pobreza'],
+          ['2008', 44.4],
+          ['2010', 46.1],
+          ['2012', 45.5],
+          ['2014', 46.2],
+          ['2016', 43.6],
+          ['2018', 41.9]
+        ]);
+        var options1 = { title: 'Evolución de la pobreza (2008-2018)', curveType: 'function', legend: { position: 'bottom' } };
+        var chart1 = new google.visualization.LineChart(document.getElementById('chart1_div'));
+        chart1.draw(data1, options1);
+
+        // 2. Gráfico de Barras
+        var data2 = google.visualization.arrayToDataTable([
+          ['Carencia Social', '2008', '2018'],
+          ['Rezago educativo', 21.9, 16.9],
+          ['Acceso a la salud', 38.4, 16.2],
+          ['Seguridad social', 65.0, 57.3],
+          ['Calidad vivienda', 17.7, 11.1],
+          ['Servicios básicos', 22.9, 19.8],
+          ['Alimentación', 21.7, 20.4]
+        ]);
+        var options2 = { title: 'Evolución de carencias sociales (%)', chartArea: {width: '50%'} };
+        var chart2 = new google.visualization.BarChart(document.getElementById('chart2_div'));
+        chart2.draw(data2, options2);
+
+        // 3. Gráfico Circular (Pastel)
+        var data3 = google.visualization.arrayToDataTable([
+          ['Condición', 'Porcentaje'],
+          ['Situación de pobreza', 41.9],
+          ['Vulnerable por carencias', 29.3],
+          ['Vulnerable por ingresos', 7.0],
+          ['No pobre y no vulnerable', 22.6]
+        ]);
+        var options3 = { title: 'Distribución de la población por condición (2018)', pieHole: 0.3 };
+        var chart3 = new google.visualization.PieChart(document.getElementById('chart3_div'));
+        chart3.draw(data3, options3);
+
+        // 4. Gráfico de Columnas
+        var data4 = google.visualization.arrayToDataTable([
+          ['Zona', 'Porcentaje'],
+          ['Rural', 55.3],
+          ['Urbana', 37.6]
+        ]);
+        var options4 = { title: 'Pobreza por zona de residencia (2018)', legend: {position: 'none'} };
+        var chart4 = new google.visualization.ColumnChart(document.getElementById('chart4_div'));
+        chart4.draw(data4, options4);
+
+        // 5. Gráfico de Área
+        var data5 = google.visualization.arrayToDataTable([
+          ['Año', 'Pobreza Total (M)', 'Pobreza Extrema (M)'],
+          ['2008', 49.5, 12.3],
+          ['2010', 52.8, 13.0],
+          ['2012', 53.3, 11.4],
+          ['2014', 55.3, 11.5],
+          ['2016', 53.4, 9.4],
+          ['2018', 52.4, 9.3]
+        ]);
+        var options5 = { title: 'Millones de personas en pobreza y pobreza extrema', isStacked: false };
+        var chart5 = new google.visualization.AreaChart(document.getElementById('chart5_div'));
+        chart5.draw(data5, options5);
+      }
+    </script>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center;">
+    <h2>Tablero de Datos: 10 Años de Medición de Pobreza (CONEVAL)</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <div id="chart1_div" style="width: 600px; height: 400px; margin: 10px; border: 1px solid #ccc;"></div>
+        <div id="chart2_div" style="width: 600px; height: 400px; margin: 10px; border: 1px solid #ccc;"></div>
+        <div id="chart3_div" style="width: 600px; height: 400px; margin: 10px; border: 1px solid #ccc;"></div>
+        <div id="chart4_div" style="width: 600px; height: 400px; margin: 10px; border: 1px solid #ccc;"></div>
+        <div id="chart5_div" style="width: 600px; height: 400px; margin: 10px; border: 1px solid #ccc;"></div>
+    </div>
+</body>
+</html>
